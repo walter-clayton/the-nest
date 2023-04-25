@@ -2,14 +2,14 @@ const settings = {
   "name": "the-nest",
   "state": {
     "frontity": {
-      "url": "https://test.frontity.org",
+      "url": "http://thenestbramley.atwebpages.com/",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
   },
   "packages": [
     {
-      "name": "@frontity/mars-theme",
+      "name": "the-nest-theme",
       "state": {
         "theme": {
           "menu": [
@@ -45,7 +45,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "url": "http://thenestbramley.atwebpages.com/"
         }
       }
     },
