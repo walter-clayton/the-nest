@@ -1,22 +1,68 @@
 
 import React from "react"
-import { connect } from "frontity"
-import Link from "@frontity/components/link"
+import { connect, Global, css, styled, Head } from "frontity"
+import Switch from "@frontity/components/switch"
+import Loading from "./loading"
+import List from "./list"
+import Post from "./post"
+import Page from "./page"
+import Error from "./error"
+import Header from "./header"
 
 const Root = ({ state }) => {
+    const data = state.source.get(state.router.link)
   return (
     <>
-      <h1>Hello Frontity</h1>
-      <p>Current URL: {state.router.link}</p>
-      <nav>
-        <Link link="/">Home</Link>
-        <br />
-        <Link link="/page/2">More posts</Link>
-        <br />
-        <Link link="/about-us">About Us</Link>
-      </nav>
+    <Head>
+      <meta name="description" content={state.frontity.description} />
+      <html lang="en" />
+    </Head>
+        <Global styles={globalStyles}
+      />
+      <Header isPostType={data.isPostType} isPage={data.isPage} />
+      <Main>
+        <Switch>
+            <Loading when={data.isFetching} />
+            <List when={data.isArchive} />
+            <Post when={data.isPost} />
+            <Page when={data.isPage} />
+            <Error when={data.isError} />
+        </Switch>
+      </Main>
     </>
   )
 }
 
 export default connect(Root)
+
+const globalStyles = css`
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html {
+font-family: system-ui, Verdana, Arial, sans-serif;
+}
+`
+const Main = styled.main`
+  max-width: 800px;
+  padding: 1em;
+  margin: auto;
+
+  img {
+    max-width: 100%;
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
+  p {
+    line-height: 1.25em;
+    margin-bottom: 0.75em;
+  }
+  figcaption {
+    color: #828282;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+  }
+`

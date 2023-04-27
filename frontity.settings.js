@@ -2,7 +2,7 @@ const settings = {
   "name": "the-nest",
   "state": {
     "frontity": {
-      "url": "http://thenestbramley.atwebpages.com/",
+      "url": "https://walter-clayton.000webhostapp.com/",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
@@ -16,18 +16,6 @@ const settings = {
             [
               "Home",
               "/"
-            ],
-            [
-              "Nature",
-              "/category/nature/"
-            ],
-            [
-              "Travel",
-              "/category/travel/"
-            ],
-            [
-              "Japan",
-              "/tag/japan/"
             ],
             [
               "About Us",
@@ -45,7 +33,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://thenestbramley.atwebpages.com/"
+          "url": "https://walter-clayton.000webhostapp.com/"
         }
       }
     },
