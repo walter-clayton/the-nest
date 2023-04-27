@@ -28,9 +28,10 @@ const Nav = ({ state }) => (
 export default connect(Nav);
 
 const NavContainer = styled.nav`
+  background-color: black;
   list-style: none;
   display: flex;
-  width: 848px;
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
   padding: 0 24px;
@@ -45,19 +46,23 @@ const NavContainer = styled.nav`
 const NavItem = styled.div`
   padding: 0;
   margin: 0 16px;
-  color: #fff;
+  color: white;
   font-size: 0.9em;
   box-sizing: border-box;
   flex-shrink: 0;
 
   & > a {
+    text-decoration: none;
+    color: white;
     display: inline-block;
     line-height: 2em;
     border-bottom: 2px solid;
     border-bottom-color: transparent;
     /* Use for semantic approach to style the current link */
     &[aria-current="page"] {
-      border-bottom-color: #fff;
+      border-bottom-color: #FFA8A8;
+      color: #FFA8A8;
+
     }
   }
 

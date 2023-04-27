@@ -3,8 +3,8 @@ const settings = {
   "state": {
     "frontity": {
       "url": "https://walter-clayton.000webhostapp.com/",
-      "title": "Test Frontity Blog",
-      "description": "WordPress installation for Frontity development"
+      "title": "The Nest",
+      "description": "Your Bramley family friendly coffee shop"
     }
   },
   "packages": [
@@ -16,6 +16,22 @@ const settings = {
             [
               "Home",
               "/"
+            ],
+            [
+              "Menu",
+              "/menu/"
+            ],
+            [
+              "Contact",
+              "/contact/"
+            ],
+            [
+              "Gallery",
+              "/gallery/"
+            ],
+            [
+              "Reviews",
+              "/reviews/"
             ],
             [
               "About Us",
