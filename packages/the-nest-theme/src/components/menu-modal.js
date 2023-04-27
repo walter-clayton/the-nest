@@ -32,7 +32,7 @@ const MenuModal = ({ ...props }) => {
 };
 
 const MenuOverlay = styled.div`
-  background-color: #1f38c5;
+  background-color: black;
   width: 100vw;
   height: 100vh;
   overflow: hidden auto;
@@ -54,6 +54,8 @@ const MenuLink = styled(Link)`
   font-size: 20px;
   text-align: center;
   padding: 1.2rem 0;
+  text-decoration: none;
+  color: white;
 
   &:hover,
   &:focus {
@@ -61,8 +63,10 @@ const MenuLink = styled(Link)`
   }
   /* styles for active link */
   &[aria-current="page"] {
-    color: yellow;
+    color: #FFA8A8;
     font-weight: bold;
+    border-bottom-color: white;
+    border-bottom: 2px solid;
   }
 `;
 
