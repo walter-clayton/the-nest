@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
-import TheNestLogo from "../../../../static/images/thenest-logo.jpg";
+import TheNestLogo from "../../../../static/images/thenest-logo-white.svg";
 
 const Header = ({ state }) => {
   return (

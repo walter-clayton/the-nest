@@ -8,6 +8,7 @@ import List from "./list"
 import Post from "./post"
 import Page from "./page"
 import Error from "./error"
+import Hero from "./hero"
 
 const Root = ({ state }) => {
     const data = state.source.get(state.router.link)
@@ -20,6 +21,7 @@ const Root = ({ state }) => {
         <Global styles={globalStyles}
       />
       <Header isPostType={data.isPostType} isPage={data.isPage} />
+      <Hero/>
       <Main>
         <Switch>
             <Loading when={data.isFetching} />
