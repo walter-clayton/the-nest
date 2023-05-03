@@ -9,6 +9,7 @@ import Post from "./post"
 import Page from "./page"
 import Error from "./error"
 import Hero from "./hero"
+import Section from "./section"
 
 const Root = ({ state }) => {
     const data = state.source.get(state.router.link)
@@ -22,6 +23,7 @@ const Root = ({ state }) => {
       />
       <Header isPostType={data.isPostType} isPage={data.isPage} />
       <Hero/>
+      <Section/>
       <Main>
         <Switch>
             <Loading when={data.isFetching} />
