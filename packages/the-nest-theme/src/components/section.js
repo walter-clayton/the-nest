@@ -1,8 +1,12 @@
 import { connect, styled } from "frontity";
 import BlackBeigeRectangle from "../../../../static/images/black-beige-rectangle.svg";
+import BeigeBrownRectangle from "../../../../static/images/beige-brown-rectangle.svg";
 import CremeBrule from "../../../../static/images/creme-brule.jpeg";
+import FeaturedMedia from "./featured-media";
 
-const Section = () => {
+const Section = ({ state }) => {
+    const menu = state.source.attachment[35]
+    console.log(menu)
     return (
         <>
         <SectionImg src={BlackBeigeRectangle} alt="The Nest Logo"></SectionImg>
@@ -17,6 +21,23 @@ const Section = () => {
                     <Title>Serving you coffee since 2018 </Title>
                     <CTA href="#story">Our Story</CTA>
                 </OrderOne>
+            </ParentContainer>
+        </MainContainer>
+        <SectionImg src={BeigeBrownRectangle} alt="The Nest Logo"></SectionImg>
+        <MainContainer className="section-two">
+            <ParentContainer>
+                <OrderOne>
+                    <Title className="menu">Our Delightful Menu</Title>
+                    <CTA className="download" target="_blank" href={menu.source_url} download>Download</CTA>
+                </OrderOne>
+                <OrderTwo>
+                    <Img
+                    alt={menu.title.rendered}
+                    src={menu.source_url}
+                    width={menu?.media_details?.width}
+                    height={menu?.media_details?.height}                    
+                    id={menu.featured_media} />
+                </OrderTwo>
             </ParentContainer>
         </MainContainer>
         </>
@@ -34,6 +55,10 @@ display: flex;
 align-items: center;
 flex-direction: column;
 background-color: #EFDECD;
+
+&.section-two{
+    background-color: #A67B5B;
+}
 `;
 const ParentContainer = styled.div`
 width: 90%;
@@ -86,6 +111,9 @@ font-weight: 600;
 color: black;
 line-height: 1.5;
 margin-bottom: 35px;
+&.menu{
+    color: white;
+}
 ${mq[0]} {
     font-size: 28px;
 }
@@ -100,6 +128,10 @@ border-radius: 15px;
 background-color: #A67B5B;
 color: white;
 width: fit-content;
+&.download{
+    background-color: #EFDECD;
+    color: black;
+}
 &:hover,
 &:focus {
   background-color: #FFA8A8;
