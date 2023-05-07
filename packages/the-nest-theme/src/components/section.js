@@ -1,20 +1,57 @@
-import { connect, styled } from "frontity";
+import {useState} from "react";
+import { connect, styled, css } from "frontity";
 import BlackBeigeRectangle from "../../../../static/images/black-beige-rectangle.svg";
 import BeigeBrownRectangle from "../../../../static/images/beige-brown-rectangle.svg";
+import BrownBeigeRectangle from "../../../../static/images/brown-beige-rectangle.svg";
 import CremeBrule from "../../../../static/images/creme-brule.jpeg";
-import FeaturedMedia from "./featured-media";
+import Review from "../components/review";
+import data from "../../../../static/data/reviews.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const Section = ({ state }) => {
+    const [reviews, setReviews] = useState(data);
+    const [index, setIndex] = useState(0);
+    const [reviewIndex, setReviewIndex] = useState(0);
+    const review = reviews[index];
+    
+    const NavigationDots = ({ reviews, currentIndex, setCurrentIndex }) => {
+        const handleClick = (index) => {
+          setCurrentIndex(index);
+        };
+      
+        return (
+          <DotContainer>
+            {reviews.map((_, index) => (
+              <Dot
+                key={`dot-${index}`}
+                active={currentIndex === index}
+                onClick={() => handleClick(index)}
+                />
+                ))}
+                </DotContainer>
+                );
+    };
+
+    const handlePrev = () => {
+      setIndex(index - 1 < 0 ? reviews.length - 1 : index - 1);
+      setReviewIndex(reviewIndex - 1 < 0 ? reviews.length - 1 : reviewIndex - 1);
+    };
+    
+    const handleNext = () => {
+      setIndex((index + 1) % reviews.length);
+      setReviewIndex((reviewIndex + 1) % reviews.length);
+    };
     const menu = state.source.attachment[35]
-    console.log(menu)
     return (
         <>
-        <SectionImg src={BlackBeigeRectangle} alt="The Nest Logo"></SectionImg>
+        <SectionImg src={BlackBeigeRectangle}></SectionImg>
         <MainContainer>
             <ParentContainer>
                 <OrderTwo>
                 <ImgContainer>
-                    <Img src={CremeBrule} alt="The Nest Logo"></Img>
+                    <Img src={CremeBrule} css={css({ border: '10px solid #6F4E37' })} alt="Creme Brule"></Img>
                 </ImgContainer>
                 </OrderTwo>
                 <OrderOne>
@@ -23,7 +60,7 @@ const Section = ({ state }) => {
                 </OrderOne>
             </ParentContainer>
         </MainContainer>
-        <SectionImg src={BeigeBrownRectangle} alt="The Nest Logo"></SectionImg>
+        <SectionImg src={BeigeBrownRectangle}></SectionImg>
         <MainContainer className="section-two">
             <ParentContainer>
                 <OrderOne>
@@ -32,13 +69,33 @@ const Section = ({ state }) => {
                 </OrderOne>
                 <OrderTwo>
                     <Img
+                    css={css({ border: '10px solid #EFDECD' })}
                     alt={menu.title.rendered}
                     src={menu.source_url}
-                    width={menu?.media_details?.width}
-                    height={menu?.media_details?.height}                    
                     id={menu.featured_media} />
                 </OrderTwo>
             </ParentContainer>
+        </MainContainer>
+        <SectionImg src={BrownBeigeRectangle}></SectionImg>
+        <MainContainer className="section-three">
+            <ContainerParentReview>
+                <button type="button" onClick={handlePrev} css={css`text-decoration: none; border: none; background: none;}`}>
+                <FontAwesomeIcon icon={faChevronLeft} size="5x" css={css`color: #A67B5B;:hover{color: #F18888;}`}/>
+                </button>
+                <ContainerReview>
+                    <Review key={`review-${reviewIndex}`} {...review} reviewIndex={reviewIndex} index={index}></Review>
+                    <ButtonContainer>
+                    <NavigationDots
+                        reviews={reviews}
+                        currentIndex={index}
+                        setCurrentIndex={setIndex}
+                    />
+                    </ButtonContainer>  
+                </ContainerReview>
+                  <button type="button" onClick={handleNext} css={css`text-decoration: none; border: none; background: none;}`}>
+                    <FontAwesomeIcon icon={faChevronRight} size="5x" css={css`color: #A67B5B;:hover{color: #F18888;}`}/>
+                  </button>
+            </ContainerParentReview>
         </MainContainer>
         </>
     );
@@ -169,3 +226,41 @@ width: 100%;
 margin-top: -10px;
 margin-bottom: -10px;
   `;
+
+  const ContainerParentReview = styled.div`
+  max-width: 1200px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 90%;
+  padding: 30px 0 30px 0;
+  ${mq[2]} {
+  }
+`;
+
+const ContainerReview = styled.div`
+  padding: 50px;
+  ${mq[2]} {
+    padding: 0px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+text-align: center; 
+`;
+
+const DotContainer = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 20px;
+`;
+
+const Dot = styled.div`
+width: 10px;
+height: 10px;
+background-color: ${(props) => (props.active ? "#F18888" : "#A67B5B")};
+border-radius: 50%;
+margin: 0 5px;
+cursor: pointer;
+`;
