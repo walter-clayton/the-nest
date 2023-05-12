@@ -31,7 +31,7 @@ background-color: black;
 `;
 const ParentContainer = styled.div`
 width: 90%;
-max-width: 1200px;
+max-width: 1500px;
 margin: 5% auto;
 display: flex;
 justify-content: space-evenly;
@@ -75,8 +75,8 @@ ${mq[2]} {
 `;
 
 const Title = styled.h1`
-font-size: 32px;
-font-weight: 600;
+font-size: 38px;
+font-weight: 800;
 color: white;
 line-height: 1.5;
 margin-bottom: 35px;
