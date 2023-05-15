@@ -1,108 +1,145 @@
-import React from "react"
+import {useEffect, useState, useRef} from "react";
+import Link from "./link";
 import { connect, styled } from "frontity"
-import Link from "@frontity/components/link"
+import dayjs from "dayjs"
 
-const List = ({ state, actions, libraries }) => {
+const List = ({ state, libraries }) => {
   const data = state.source.get(state.router.link);
   const Html2React = libraries.html2react.Component;
+  const itemRef = useRef(null);
+
+  const [visiblePosts, setVisiblePosts] = useState(2);
+  const postsPerLoad = 2;
+
+  const loadMore = () => {
+    setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + postsPerLoad);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    }, { threshold: 0.5 }); // Trigger the callback when 50% of the item is visible
+
+    observer.observe(itemRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
 
   return (
-    <Items>
-      {data.items.map((item) => {
-        const post = state.source[item.type][item.id]
-        return (
-        <Card key={item.id}> 
-          <CardTitle>
-            {post.title.rendered}
-          </CardTitle>
-          <PostDate>
-            {post.date.rendered}
-          </PostDate>
-          <Excerpt>
-          <Html2React html={post.excerpt.rendered} />
-          </Excerpt>
-          <LinkButton>
-            <Link key={item.id} link={post.link}>
-                Read more
-            </Link>
-          </LinkButton>
-        </Card>
-        )
-      })}
-      <PrevNextNav>
-        {data.previous && (
-          <button
-            onClick={() => {
-              actions.router.set(data.previous)
-            }}
-          >
-            &#171; Prev
-          </button>
-        )}
-        {data.next && (
-          <button
-            onClick={() => {
-              actions.router.set(data.next)
-            }}
-          >
-            Next &#187;
-          </button>
-        )}
-      </PrevNextNav>
-    </Items>
+    <ItemsContainer>
+      <Items>
+        {data.items.slice(0, visiblePosts).map((item) => {
+          const post = state.source[item.type][item.id]
+          const date = new Date(post.date);
+          const formattedDate = dayjs(date).format("DD MMMM YYYY");
+          const news = post["categories"].includes(8)
+          if (news) {
+            return (
+              <Card ref={itemRef} key={item.id}>
+                <CardContent>
+                  <CardTitle>{post.title.rendered}</CardTitle>
+                  <PostDate>{formattedDate}</PostDate>
+                  <Excerpt>
+                    <Html2React html={post.excerpt.rendered} />
+                  </Excerpt>
+                </CardContent>
+                <CTA>
+                  <Link key={item.id} link={item.link}>
+                    Read more
+                  </Link>
+                </CTA>
+              </Card>
+            );
+          }
+          return null;
+        })}
+      </Items>
+      {visiblePosts < data.items.length && (
+      <LoadMoreButton onClick={loadMore}>Load More</LoadMoreButton>
+    )}
+    </ItemsContainer>
   )
 }
 
 export default connect(List)
 
-const Items = styled.div`
-  & > a {
-    display: block;
-    margin: 6px 0;
-    font-size: 1.2em;
-    color: steelblue;
-    text-decoration: none;
-  }
-`
-const PrevNextNav = styled.div`
-  padding-top: 1.5em;
+const breakpoints = [576, 768, 992, 1200]
 
-  & > button {
-    background: #eee;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    color: #888;
-    border: 1px solid #aaa;
-    font-size: 0.8em;
-    margin-right: 2em;
-  }
-  & > button:hover {
-    cursor: pointer;
-  }
-`
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
+
+const ItemsContainer = styled.div`
+{}
+`;
+const Items = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    ${mq[1]} {
+      flex-direction: column;
+    }
+`;
 const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  margin: 25px;
-  background-color: grey;
-  border: 5px;
-  border-radius: 25px;
-`
+flex-direction: column;
+justify-content: space-between;
+flex: 1 40%;
+padding: 2%;
+margin: 2%;
+background-color: white;
+border: 5px;
+border-radius: 25px;
+display: flex;
+`;
+
+const CardContent = styled.div`
+`;
+
 const CardTitle = styled.div`
-    font-size: 28px;
-    font-weight: 400;
-`
+font-size: 28px;
+font-weight: 600;
+padding: 10px 10px;
+`;
+
 const PostDate = styled.div`
-    font-size: 22px italic;
-    font-weight: 400;
-`
+font-size: 22px italic;
+font-weight: 400;
+padding: 10px 10px;
+font-style: italic;
+`;
+
 const Excerpt = styled.div`
-    font-size: 22px;
-    font-weight: 400;
-`
-const LinkButton = styled.div`
-    font-size: 22px;
-    font-weight: 400;
-    color: blue;
-`
+font-size: 22px;
+font-weight: 400;
+padding: 10px 10px;
+`;
+
+const CTA = styled.div`
+& > a {
+  text-decoration: none;
+  color: #f18888;
+  font-size: 22px;
+  padding: 10px 10px;
+  font-weight: 600;
+}
+`;
+const LoadMoreButton = styled.button`
+  display: flex;
+  background-color: white;
+  color: black;
+  padding: 1rem 2rem;
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 15px;
+  border: 3px solid #6F4E37;
+  margin: 50px auto;
+  cursor: pointer;
+  &:hover {
+    color: #f18888;
+    border-color: #f18888;
+  }
+`;

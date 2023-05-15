@@ -50,10 +50,9 @@ font-family: system-ui, Verdana, Arial, sans-serif;
 }
 `
 const Main = styled.main`
-  max-width: 800px;
   padding: 1em;
   margin: auto;
-
+  background-color: #EFDECD;
   img {
     max-width: 100%;
   }
