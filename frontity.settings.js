@@ -1,61 +1,45 @@
 const settings = {
-  "name": "the-nest",
-  "state": {
-    "frontity": {
-      "url": "https://walter-clayton.000webhostapp.com/",
-      "title": "The Nest",
-      "description": "Your Bramley family friendly coffee shop"
-    }
+  name: "the-nest",
+  state: {
+    frontity: {
+      url: "https://walter-clayton.000webhostapp.com/",
+      title: "The Nest",
+      description: "Your Bramley family friendly coffee shop",
+    },
   },
-  "packages": [
+  packages: [
     {
-      "name": "the-nest-theme",
-      "state": {
-        "theme": {
-          "menu": [
-            [
-              "Home",
-              "/"
-            ],
-            [
-              "Menu",
-              "/menu/"
-            ],
-            [
-              "Contact",
-              "/contact/"
-            ],
-            [
-              "Gallery",
-              "/gallery/"
-            ],
-            [
-              "Reviews",
-              "/reviews/"
-            ],
-            [
-              "About Us",
-              "/about-us/"
-            ]
+      name: "the-nest-theme",
+      state: {
+        theme: {
+          menu: [
+            ["Home", "/"],
+            ["Menu", "/menu/"],
+            ["Contact", "/contact/"],
+            ["Gallery", "/gallery/"],
+            ["Reviews", "/reviews/"],
+            ["About Us", "/about-us/"],
+            ["Testing", "/testing/"],
           ],
-          "featured": {
-            "showOnList": false,
-            "showOnPost": false
-          }
-        }
-      }
+          featured: {
+            showOnList: false,
+            showOnPost: false,
+          },
+        },
+      },
     },
     {
-      "name": "@frontity/wp-source",
-      "state": {
-        "source": {
-          "url": "https://walter-clayton.000webhostapp.com/"
-        }
-      }
+      name: "@frontity/wp-source",
+      state: {
+        source: {
+          url: "https://walter-clayton.000webhostapp.com/",
+        },
+      },
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
-  ]
+    "@frontity/html2react",
+    "@aamodtgroup/frontity-contact-form-7",
+  ],
 };
 
 export default settings;

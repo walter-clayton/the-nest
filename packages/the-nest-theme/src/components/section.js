@@ -50,7 +50,7 @@ const Section = ({ state }) => {
     <>
       <SectionImg src={BlackBeigeRectangle} />
       <MainContainer>
-      <Title>STORY</Title>
+        <Title>STORY</Title>
         <ParentContainer>
           <OrderTwo>
             <ImgContainer>
@@ -65,7 +65,7 @@ const Section = ({ state }) => {
       </MainContainer>
       <SectionImg src={BeigeBrownRectangle} />
       <MainContainer className="brown-background">
-      <Title className="white-title">MENU</Title>
+        <Title className="white-title">MENU</Title>
         <ParentContainer>
           <OrderOne>
             <Title className="white-title">Hot, cold, food and drinks...</Title>
@@ -83,7 +83,7 @@ const Section = ({ state }) => {
         </MainContainer>
       <SectionImg src={BrownBeigeRectangle} />
       <MainContainer className="section-three">
-      <Title>REVIEWS</Title>
+        <Title>REVIEWS</Title>
         {/* Review Section */}
         <ContainerParent>
           <button type="button" onClick={handlePrevReview} css={css`text-decoration: none; border: none; background: none;}`}>
