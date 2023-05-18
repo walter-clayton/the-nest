@@ -10,6 +10,7 @@ import Page from "./page"
 import Error from "./error"
 import Hero from "./hero"
 import Section from "./section"
+import Footer from "./footer"
 
 const Root = ({ state }) => {
     const data = state.source.get(state.router.link)
@@ -23,16 +24,17 @@ const Root = ({ state }) => {
       />
       <Header isPostType={data.isPostType} isPage={data.isPage} />
       <Hero/>
-      <Section/>
+      <Section />
       <Main>
         <Switch>
             <Loading when={data.isFetching} />
             <List when={data.isArchive} />
-            <Post when={data.isPost} />
             <Page when={data.isPage} />
+            <Post when={data.isPost} />
             <Error when={data.isError} />
         </Switch>
       </Main>
+      <Footer/>
     </>
   )
 }
