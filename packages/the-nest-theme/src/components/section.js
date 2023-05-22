@@ -49,7 +49,7 @@ const Section = ({ state }) => {
   return (
     <>
       <SectionImg src={BlackBeigeRectangle} />
-      <MainContainer>
+      <MainContainer id="about">
         <Title>STORY</Title>
         <ParentContainer>
           <OrderTwo>
@@ -64,7 +64,7 @@ const Section = ({ state }) => {
         </ParentContainer>
       </MainContainer>
       <SectionImg src={BeigeBrownRectangle} />
-      <MainContainer className="brown-background">
+      <MainContainer className="brown-background" id="menu">
         <Title className="white-title">MENU</Title>
         <ParentContainer>
           <OrderOne>
@@ -82,7 +82,7 @@ const Section = ({ state }) => {
         </ParentContainer>
         </MainContainer>
       <SectionImg src={BrownBeigeRectangle} />
-      <MainContainer className="section-three">
+      <MainContainer className="section-three" id="reviews">
         <Title>REVIEWS</Title>
         {/* Review Section */}
         <ContainerParent>
@@ -109,7 +109,7 @@ const Section = ({ state }) => {
         </ContainerParent>
       </MainContainer>
       <SectionImg src={BeigeBrownRectangle} />
-      <MainContainer className="brown-background">
+      <MainContainer className="brown-background" id="gallery">
         {/* Gallery Section */}
         <Title className="white-title">GALLERY</Title>
         <ContainerParent>

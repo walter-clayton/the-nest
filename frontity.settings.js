@@ -14,12 +14,11 @@ const settings = {
         theme: {
           menu: [
             ["Home", "/"],
-            ["Menu", "/menu/"],
-            ["Contact", "/contact/"],
-            ["Gallery", "/gallery/"],
-            ["Reviews", "/reviews/"],
-            ["About Us", "/about-us/"],
-            ["Testing", "/testing/"],
+            ["Menu", "#menu"],
+            ["Contact", "#contact"],
+            ["Gallery", "#gallery"],
+            ["Reviews", "#reviews"],
+            ["About Us", "#about"],
           ],
           featured: {
             showOnList: false,
