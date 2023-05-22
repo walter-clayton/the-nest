@@ -10,7 +10,7 @@ const Footer = ({ state, libraries }) => {
 
     return (
         <>
-        <MainContainer className="brown-background">
+        <MainContainer className="brown-background" id="contact">
             <Title className="white-title">CONTACT</Title>
             <ParentContainer>
                 <OrderOne>
