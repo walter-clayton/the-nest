@@ -49,6 +49,8 @@ box-sizing: border-box;
 }
 html {
 font-family: system-ui, Verdana, Arial, sans-serif;
+background-color: #EFDECD;
+
 }
 `
 const Main = styled.main`
