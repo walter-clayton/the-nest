@@ -50,30 +50,28 @@ const Section = ({ state }) => {
     <>
       <SectionImg src={BlackBeigeRectangle} />
       <MainContainer id="about">
-        <Title>STORY</Title>
         <ParentContainer>
           <OrderTwo>
             <ImgContainer>
-              <Img src={CremeBrule} css={css({ border: '10px solid #6F4E37', height:'auto' })} alt="Creme Brule" />
+              <Img src={CremeBrule} css={css({ border: '10px solid #6F4E37', height:'auto', width: '80%' })} alt="Creme Brule" />
             </ImgContainer>
           </OrderTwo>
           <OrderOne>
             <Title>Serving you coffee since 2018</Title>
-            <CTA href="#story">Read More</CTA>
+            <CTA href="#story" className="background-brown">Read More</CTA>
           </OrderOne>
         </ParentContainer>
       </MainContainer>
       <SectionImg src={BeigeBrownRectangle} />
       <MainContainer className="brown-background" id="menu">
-        <Title className="white-title">MENU</Title>
         <ParentContainer>
           <OrderOne>
             <Title className="white-title">Hot, cold, food and drinks...</Title>
-            <CTA className="download" target="_blank" href={menu.source_url} download>Download</CTA>
+            <CTA className="background-beige" target="_blank" href={menu.source_url} download>Download</CTA>
           </OrderOne>
           <OrderTwo>
             <Img
-              css={css({ border: '10px solid #EFDECD' })}
+              css={css({ border: '10px solid #EFDECD', width: '80%' })}
               alt={menu.title.rendered}
               src={menu.source_url}
               id={menu.featured_media}
@@ -83,7 +81,6 @@ const Section = ({ state }) => {
         </MainContainer>
       <SectionImg src={BrownBeigeRectangle} />
       <MainContainer className="section-three" id="reviews">
-        <Title>REVIEWS</Title>
         {/* Review Section */}
         <ContainerParent>
           <button type="button" onClick={handlePrevReview} css={css`text-decoration: none; border: none; background: none;}`}>
@@ -111,14 +108,17 @@ const Section = ({ state }) => {
       <SectionImg src={BeigeBrownRectangle} />
       <MainContainer className="brown-background" id="gallery">
         {/* Gallery Section */}
-        <Title className="white-title">GALLERY</Title>
         <ContainerParent>
           <button type="button" onClick={handlePrevGallery} css={css`text-decoration: none; border: none; background: none;}`}>
             <FontAwesomeIcon icon={faChevronLeft} size="5x" css={css`color: white;:hover{color: #F18888;}`}/>
           </button>
           <ContainerReview>
               <>
-                <GalleryImage alt={galleryImages[galleryIndex]} src={galleryImages[galleryIndex]} key={`gallery-${galleryIndex}`} />
+                <GalleryImage
+                css={css({ border: '10px solid #EFDECD', width: '80%' })}
+                alt={galleryImages[galleryIndex]}
+                src={galleryImages[galleryIndex]}
+                key={`gallery-${galleryIndex}`} />
                 <ButtonContainer>
                   <NavigationDots
                     items={galleryImages}
@@ -133,6 +133,7 @@ const Section = ({ state }) => {
           </button>
         </ContainerParent>
       </MainContainer>
+      <SectionImg src={BrownBeigeRectangle} />
     </>
   );
 };
@@ -159,6 +160,7 @@ const breakpoints = [576, 768, 992, 1200];
 const mq = breakpoints.map((bp) => `@media (max-width: ${bp}px)`);
 
 const MainContainer = styled.div`
+margin-top: -10px;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -186,11 +188,9 @@ ${mq[2]} {
 `;
 
 const OrderOne = styled.div`
-align-items: center;
-display flex;
-flex-direction: column;
 margin: auto;
-width: 100%;
+align-items: center;
+width: fit-content;
 padding: 30px 0 30px 0;
 ${mq[2]} {
   width: 80%;
@@ -203,7 +203,7 @@ align-items: center;
 display flex;
 flex-direction: column;
 margin: auto;
-width: 90%;
+width: 50%;
 padding: 30px 0 30px 0;
 ${mq[2]} {
   width: 80%;
@@ -215,13 +215,38 @@ ${mq[2]} {
 
 const Title = styled.h2`font-size: 38px; font-weight: 700; color: #6f4e37; margin-bottom: 2rem; ${mq[2]} { font-size: 2rem; margin-bottom: 2rem; } &.white-title { color: #ffffff; }`;
 
-const CTA = styled.a`margin-top: 100px !important; width: fit-content; text-decoration: none; background-color: #f18888; color: #ffffff; padding: 1rem 2rem; font-size: 1.5rem; font-weight: 600; border-radius: 15px; transition: background-color 0.3s ease; &:hover { background-color: #c45f5f; } &.download { background-color: #efdecd; color: #6f4e37; &:hover { background-color: #d7c2b3; } }`;
+const CTA = styled.a`
+width: fit-content;
+text-decoration: none;
+background-color: white;  
+color: black;
+border: 3px solid black;
+padding: 1rem 2rem;
+font-size: 18px;
+font-weight: 600;
+border-radius: 15px;
+&.background-brown{
+  background-color: #A67B5B;
+  border: none;
+  color:white;
+}
+&.background-beige{
+  background-color: #EFDECD;
+  border: none;
+  color:black;
+}
+transition: background-color 0.3s ease; &:hover { background-color: #F18888; color: white;}
+`;
 
 const ImgContainer = styled.div`max-width: 100%; overflow: hidden; border-radius: 15px;`;
 
 const Img = styled.img`width: 100%; height: auto; border-radius: 15px`;
 
-const SectionImg = styled.img`width: 100%; height: auto;`;
+const SectionImg = styled.img`
+width: 100%;
+height: auto;
+margin-top: -10px;
+`;
 
 const ContainerParent = styled.div`width: 90%; max-width: 1200px; margin: 5% auto; display: flex;flex-direction: row; justify-content: space-between; align-items: center; ${mq[2]} { flex-direction: row; }`;
 

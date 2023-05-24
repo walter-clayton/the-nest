@@ -2,6 +2,7 @@ import { connect, styled, css } from "frontity";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faEnvelope, faPhone} from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import BeigeBrownRectangle from "../../../../static/images/beige-brown-rectangle.svg";
 
 const Footer = ({ state, libraries }) => {
     const data = state.source.get("/contact");
@@ -10,8 +11,8 @@ const Footer = ({ state, libraries }) => {
 
     return (
         <>
+        <SectionImg src={BeigeBrownRectangle} />
         <MainContainer className="brown-background" id="contact">
-            <Title className="white-title">CONTACT</Title>
             <ParentContainer>
                 <OrderOne>
                 <Title className="white-title">Get In Touch With Us</Title>
@@ -121,6 +122,7 @@ ${mq[2]} {
 `;
 
 const MainContainer = styled.div`
+margin-top: -10px;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -148,10 +150,12 @@ ${mq[2]} {
 `;
 
 const BottomFooter = styled.div`
-
+max-width: 1500px;
+margin: auto;
 `;
 
 const FooterContainer = styled.div`
+margin-top: 50px;
 `;
 
 const FooterBlock = styled.div`
@@ -262,5 +266,7 @@ const ContactLink = styled.a`
     text-decoration: none;
     color: white;
 `;
+
+const SectionImg = styled.img`width: 100%; height: auto;`;
 
 export default connect(Footer);
