@@ -75,8 +75,10 @@ const breakpoints = [576, 768, 992, 1200]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const ItemsContainer = styled.div`
-{}
+max-width: 1500px;
+margin: auto;
 `;
+
 const Items = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -135,7 +137,7 @@ const LoadMoreButton = styled.button`
   font-size: 22px;
   font-weight: 600;
   border-radius: 15px;
-  border: 3px solid #6F4E37;
+  border: 3px solid black;
   margin: 50px auto;
   cursor: pointer;
   &:hover {
